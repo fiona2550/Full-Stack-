@@ -67,7 +67,7 @@ One note before you delve into your tasks: for each endpoint you are expected to
 9. Create error handlers for all expected errors including 400, 404, 422 and 500. 
 
 ## API
-```
+
 
 GET \categories Fetches a dictionary of all available categories
 
@@ -201,7 +201,7 @@ GET '/categories'
 '5' : "Entertainment",
 '6' : "Sports"}
 
-```
+
 
 
 ## Testing
