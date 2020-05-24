@@ -71,8 +71,8 @@ One note before you delve into your tasks: for each endpoint you are expected to
 
 GET \categories Fetches a dictionary of all available categories
 
--Request parameters: none
--Example response:
+- Request parameters: none
+- Example response:
 {
   "categories": {
     "1": "Science", 
@@ -87,8 +87,8 @@ GET \categories Fetches a dictionary of all available categories
 
 GET \questions?page=<page_number> Fetches a paginated dictionary of questions of all available categories
 
--Request parameters (optional): page:int
--Example response:
+- Request parameters (optional): page:int
+- Example response:
  "categories": {
    "1": "Science", 
    "2": "Art", 
@@ -119,8 +119,8 @@ GET \questions?page=<page_number> Fetches a paginated dictionary of questions of
 }
 DELETE /questions/<question_id> Delete an existing questions from the repository of available questions
 
--Request arguments: question_id:int
--Example response:
+- Request arguments: question_id:int
+- Example response:
 {
   "deleted": "28", 
   "success": true
