@@ -135,8 +135,8 @@ POST /questions Add a new question to the repository of available questions
 }
 POST /questions/search Fetches all questions where a substring matches the search term (not case-sensitive)
 
--Request body: {searchTerm:string}
--Example response:
+- Request body: {searchTerm:string}
+- Example response:
 {
   "current_category": null, 
   "questions": [
@@ -153,8 +153,8 @@ POST /questions/search Fetches all questions where a substring matches the searc
 }
 GET /categories/<int:category_id>/questions Fetches a dictionary of questions for the specified category
 
--Request argument: category_id:int
--Example response:
+- Request argument: category_id:int
+- Example response:
 {
   "current_category": 1, 
   "questions": [
@@ -178,8 +178,8 @@ GET /categories/<int:category_id>/questions Fetches a dictionary of questions fo
 }
 POST /quizzes Fetches one random question within a specified category. Previously asked questions are not asked again.
 
--Request body: {previous_questions: arr, quiz_category: {id:int, type:string}}
--Example response:
+- Request body: {previous_questions: arr, quiz_category: {id:int, type:string}}
+- Example response:
 {
   "question": {
     "answer": "The Liver", 
