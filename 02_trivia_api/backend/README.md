@@ -14,7 +14,7 @@ We recommend working within a virtual environment whenever using Python for proj
 
 ```bash
 python -m venv env
-myenv\Scripts\activate
+.env\Scripts\activate
 ```
 
 #### PIP Dependencies
