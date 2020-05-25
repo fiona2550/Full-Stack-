@@ -178,7 +178,7 @@ def create_app(test_config=None):
     ----6----
     Create a POST endpoint to get questions based on category.
     '''
-    @app.route('/questions/<int:id>/categorysearch' )
+    @app.route('/categories/<int:id>/questions' )
     def get_questions_by_category(id):
         '''
         Handles GET requests for getting questions based on category.
@@ -190,7 +190,8 @@ def create_app(test_config=None):
         # get the data if it matches
         if category:
         
-            selection = Question.query.filter(Question.category == id).all()    
+            selection = Question.query.filter(
+                                        Question.category == id).all()    
             paginated = paginate_questions(request, selection)
             # return str(paginated[0])
             return jsonify({
@@ -273,7 +274,8 @@ def create_app(test_config=None):
     def play_the_quiz():
 	    
         quizzedata = request.get_json()
-        if not ('quiz_category' in quizzedata and 'previous_questions' in quizzedata):
+        if not ('quiz_category' in quizzedata 
+                        and 'previous_questions' in quizzedata):
             abort(400)
 			
         previous_questions = quizzedata['previous_questions']
@@ -287,13 +289,15 @@ def create_app(test_config=None):
                     
         else:
             questions = Question.query.filter_by(
-                category=quiz_category['id']).all()
+                                        category=quiz_category['id']).filter(
+                                        Question.id.notin_((previous_questions))).all()
+				
             random_question = random.choice(questions).format()
                     
             return jsonify({
                         'success': True,
                         'question': random_question})
-  
+        abort(422)
     '''
     @TODO: 
     Create error handlers for all expected errors 

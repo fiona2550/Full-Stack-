@@ -144,7 +144,7 @@ class TriviaTestCase(unittest.TestCase):
     ''' 
     
     def test_get_questions_category(self):
-        res = self.client().get('/questions/1/categorysearch')
+        res = self.client().get('/categories/1/questions')
         data = json.loads(res.data)
         
         self.assertEqual(res.status_code, 200)
