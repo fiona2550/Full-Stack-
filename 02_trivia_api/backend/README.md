@@ -13,8 +13,8 @@ Follow instructions to install the latest version of python for your platform in
 We recommend working within a virtual environment whenever using Python for projects. This keeps your dependencies for each project separate and organaized. Instructions for setting up a virual enviornment for your platform can be found in the [python docs](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/)
 
 ```bash
-python -m venv env
-.env\Scripts\activate
+python -m venv myenv
+myenv\Scripts\activate
 ```
 
 #### PIP Dependencies
@@ -217,6 +217,8 @@ Fetches one random question within a specified category. Previously asked questi
 ## Testing
 To run the tests, run
 ```
-drop database trivia_test
-create database trivia_test
+dropdb trivia_test
+createdb trivia_test
+psql trivia_test < trivia.psql
+python test_flaskr.py
 ```
