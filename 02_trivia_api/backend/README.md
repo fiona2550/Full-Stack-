@@ -1,4 +1,4 @@
-# Full Stack Trivia API Backend
+# python -m venv envFull Stack Trivia API Backend
 
 ## Getting Started
 
@@ -11,6 +11,11 @@ Follow instructions to install the latest version of python for your platform in
 #### Virtual Enviornment
 
 We recommend working within a virtual environment whenever using Python for projects. This keeps your dependencies for each project separate and organaized. Instructions for setting up a virual enviornment for your platform can be found in the [python docs](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/)
+
+```bash
+python -m venv env
+myenv\Scripts\activate
+```
 
 #### PIP Dependencies
 
@@ -33,7 +38,7 @@ This will install all of the required packages we selected within the `requireme
 ## Database Setup
 With Postgres running, restore a database using the trivia.psql file provided. From the backend folder in terminal run:
 ```bash
-psql trivia < trivia.psql
+psql -u Username -d trivia -f location/trivia.psql
 ```
 
 ## Running the server
@@ -43,8 +48,8 @@ From within the `backend` directory first ensure you are working using your crea
 To run the server, execute:
 
 ```bash
-export FLASK_APP=flaskr
-export FLASK_ENV=development
+set FLASK_APP=__init__
+set FLASK_ENV=development
 flask run
 ```
 
@@ -67,148 +72,6 @@ One note before you delve into your tasks: for each endpoint you are expected to
 9. Create error handlers for all expected errors including 400, 404, 422 and 500. 
 
 ## API
-
-
-GET \categories Fetches a dictionary of all available categories
-
-- Request parameters: none
-- Example response:
-{
-  "categories": {
-    "1": "Science", 
-    "2": "Art", 
-    "3": "Geography", 
-    "4": "History", 
-    "5": "Entertainment", 
-    "6": "Sports"
-  }, 
-  "success": true
-}
-
-GET \questions?page=<page_number> Fetches a paginated dictionary of questions of all available categories
-
-- Request parameters (optional): page:int
-- Example response:
-'''
- "categories": {
-   "1": "Science", 
-   "2": "Art", 
-   "3": "Geography", 
-   "4": "History", 
-   "5": "Entertainment", 
-   "6": "Sports"
- }, 
- "current_category": null, 
- "questions": [
-   {
-     "answer": "Maya Angelou", 
-     "category": 4, 
-     "difficulty": 2, 
-     "id": 5, 
-     "question": "Whose autobiography is entitled 'I Know Why the Caged Bird Sings'?"
-   },  
-   {
-     "answer": "Escher", 
-     "category": 2, 
-     "difficulty": 1, 
-     "id": 16, 
-     "question": "Which Dutch graphic artist\u2013initials M C was a creator of optical illusions?"
-   }
- ], 
- "success": true, 
- "total_questions": 2
-}
-'''
-
-DELETE /questions/<question_id> Delete an existing questions from the repository of available questions
-
-- Request arguments: question_id:int
-- Example response:
-
-'''
-{
-  "deleted": "28", 
-  "success": true
-}
-'''
-
-POST /questions Add a new question to the repository of available questions
-
--Request body: {question:string, answer:string, difficulty:int, category:string}
--Example response:
-
-'''
-{
-  "created": 29, 
-  "success": true
-}
-'''
-
-POST /questions/search Fetches all questions where a substring matches the search term (not case-sensitive)
-
-- Request body: {searchTerm:string}
-- Example response:
-'''
-{
-  "current_category": null, 
-  "questions": [
-    {
-      "answer": "Lisbon", 
-      "category": 2, 
-      "difficulty": 1, 
-      "id": 29, 
-      "question": "What is the capital of Portugal?"
-    }
-  ], 
-  "success": true, 
-  "total_questions": 1
-}
-'''
-GET /categories/<int:category_id>/questions Fetches a dictionary of questions for the specified category
-
-- Request argument: category_id:int
-- Example response:
-
-'''
-{
-  "current_category": 1, 
-  "questions": [
-    {
-      "answer": "The Liver", 
-      "category": 1, 
-      "difficulty": 4, 
-      "id": 20, 
-      "question": "What is the heaviest organ in the human body?"
-    }, 
-    {
-      "answer": "Alexander Fleming", 
-      "category": 1, 
-      "difficulty": 3, 
-      "id": 21, 
-      "question": "Who discovered penicillin?"
-    }, 
-  ], 
-  "success": true, 
-  "total_questions": 2
-}
-'''
-
-POST /quizzes Fetches one random question within a specified category. Previously asked questions are not asked again.
-
-- Request body: {previous_questions: arr, quiz_category: {id:int, type:string}}
-- Example response:
-'''
-{
-  "question": {
-    "answer": "The Liver", 
-    "category": 1, 
-    "difficulty": 4, 
-    "id": 20, 
-    "question": "What is the heaviest organ in the human body?"
-  }, 
-  "success": true
-}
-
 
 GET `\categories` 
 Fetches a dictionary of all available categories
@@ -263,7 +126,7 @@ Fetches a paginated dictionary of questions of all available categories
   "success": true, 
   "total_questions": 2
 }
-```
+ ```
 
 DELETE `/questions/<question_id>`
 Delete an existing questions from the repository of available questions
@@ -286,13 +149,13 @@ Add a new question to the repository of available questions
   "success": true
 }
 ```
-POST `/questions/search`
+POST `/questions/termsearch`
 Fetches all questions where a substring matches the search term (not case-sensitive)
 - *Request body:* {searchTerm:string}
 - *Example response:*
 ```
 {
-  "current_category": null, 
+  "current_category": None, 
   "questions": [
     {
       "answer": "Lisbon", 
@@ -307,9 +170,9 @@ Fetches all questions where a substring matches the search term (not case-sensit
 }
 ```
 
-GET `/categories/<int:category_id>/questions`
+GET `/questions/<int:id>/categorysearch`
 Fetches a dictionary of questions for the specified category
-- *Request argument:* category_id:int
+- *Request argument:* id:int
 - *Example response:*
 ```
 {
@@ -350,7 +213,6 @@ Fetches one random question within a specified category. Previously asked questi
   "success": true
 }
 ```
-
 
 ## Testing
 To run the tests, run

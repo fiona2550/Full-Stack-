@@ -15,7 +15,7 @@ class TriviaTestCase(unittest.TestCase):
         self.app = create_app()
         self.client = self.app.test_client
         self.database_name = "trivia_test"
-        self.database_path = "postgres://{}/{}".format('localhost:5432', self.database_name)
+        self.database_path = "postgres://postgres:Password".format('localhost:5432', self.database_name)
         setup_db(self.app, self.database_path)
 
         # binds the app to the current context
@@ -33,7 +33,7 @@ class TriviaTestCase(unittest.TestCase):
     TODO
     Write at least one test for each test for successful operation and for expected errors.
     """
-	def test_get_paginated_questions(self):
+	def get_paginated_questions_test(self):
 		res = self.client().get('/questions')
 		data = json.loads(res.data)
 		
@@ -44,7 +44,7 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertTrue(len(data['categories']),10)
 		
 
-	def test_get_all_categories(self):
+	def get_all_categories_test(self):
 		"""Test for get_all_categories
 		Tests for the status code, if success is true,
 		if categories is returned and the length of
@@ -59,15 +59,7 @@ class TriviaTestCase(unittest.TestCase):
 		self.assertEqual(len(data['categories']), 6)
 		
 		
-	def test_404_sent_requesting_non_existing_category(self):
-		res = self.client().get('/categories/9999')
-		data = json.loads(res.data)
-		
-		self.assertEqual(res.status_code, 404)
-		self.assertEqual(data['success'], False)
-		self.assertEqual(data['message'], 'resource not found')
-		
-	def test_delete_question(self):
+	def delete_question_test(self):
 		question = Question(question='new question', answer='new answer',
 							difficulty=1, category=1)
 		question.insert()
