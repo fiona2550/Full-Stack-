@@ -2,13 +2,17 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
-@app.route('/headers')
+@app.route('/headers', methods= ['POST', 'GET'])
 def headers():
-    temp = request.headers.get('Authorization',None)
+    #temp = request.get_json()
+    temp = request.headers['Authorization']
+    heards_parts = auth_header.split(' ')
     if temp:
-        print('missing')
+        print(request.get_json())
+        return temp
     else:
-        print('not missing')
+        print('missing')
+        return 'missing'
         #print(temp['Authorization'])
  #   auth_header = request.headers['Authorization']
  #   print(auth_header)
